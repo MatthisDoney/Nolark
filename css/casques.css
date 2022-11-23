@@ -223,7 +223,7 @@ footer {
     padding-right: 10px;
     text-align: justify;
 }
-@media screen and (max-width:576px) {
+@media screen and (max-width:768px) {
     body {
         font-size: large;
         width:100%
@@ -290,6 +290,9 @@ footer {
     }
     nav input:checked ~ ul {
         transform: none;
+    }
+    #casques {
+        width: 100%;
     }
     footer {
         width:100%;
