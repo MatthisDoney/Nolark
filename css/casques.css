@@ -297,6 +297,13 @@ footer {
     footer {
         width:100%;
     }
+    #video {
+        flex-direction: column;
+        align-items: center;
+        }
+        #video article {
+            width: 100%;
+        }
 }
 @media print {
     * {

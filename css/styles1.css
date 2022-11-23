@@ -387,7 +387,7 @@ input[type="email"]:valid ~ .input-validation::before {
         flex-direction: row; /* Sur tablette, les casques de l'accueil sont côte à côte */
     }
 }
-@media screen and (max-width:576px) {
+@media screen and (max-width:576px) {   
     #casques {
         flex-direction: column; /* Sur tablette, les casques de l'accueil sont côte à côte */
     }
