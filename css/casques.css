@@ -301,6 +301,7 @@ footer {
 @media print {
     * {
         float: left !important;
+        margin-left: 20px;
     }
     header, nav, footer, #video, #casques article img.classement {
         display: none !important;
