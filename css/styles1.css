@@ -103,7 +103,7 @@ section {
 #principal aside img:nth-child(3){
     margin-top: 20px; /* Marge supérieure du troisième élément qui est une image */
 }
-#sectthema h1 {
+#thematique h1 {
     text-align: center;
     color: orange
 }
@@ -295,7 +295,7 @@ input[type="email"]:valid ~ .input-validation::before {
         justify-content: center;
     }
 }
-@media screen and (max-width:576px) {
+@media screen and (max-width:768px) {
     body {
         font-size: large;
         width:100%
@@ -373,10 +373,15 @@ input[type="email"]:valid ~ .input-validation::before {
     #principal aside {
         display: none;
         margin-left: 100px
-            
+
     }
     footer {
         width: 100%;
     }
 }
-    
+
+@media screen and (min-width:576px) and (max-width:768px) {
+    #casques {
+        flex-direction: row; /* Sur tablette, les casques de l'accueil sont côte à côte */
+    }
+}
