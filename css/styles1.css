@@ -269,11 +269,7 @@ input[type="email"]:valid ~ .input-validation::before {
     color: green;
 }
 
-@media screen and (max-width:576px) {
-    #motif {
-        margin-top: 20px;
-    }
-}
+
 
 @media screen and (min-width:576px) and (max-width:768px) {
     #contact {
@@ -293,6 +289,12 @@ input[type="email"]:valid ~ .input-validation::before {
         width: 100%;
         display: flex;
         justify-content: center;
+    }
+    #motif {
+        margin-top: 20px;
+    }
+    #carto {
+        flex-direction: column;
     }
 }
 @media screen and (max-width:768px) {
@@ -385,3 +387,5 @@ input[type="email"]:valid ~ .input-validation::before {
         flex-direction: row; /* Sur tablette, les casques de l'accueil sont côte à côte */
     }
 }
+
+
