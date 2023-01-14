@@ -8,7 +8,7 @@ Click nbfs://nbhost/SystemFileSystem/Templates/ClientSide/html.html to edit this
         <head>
             <title>Casques Nolark : Sécurité et confort, nos priorités !</title>
             <meta charset="UTF-8">
-            <meta name="author" content="José GIL">
+            <meta name="author" content="Matthis DONEY">
             <meta name="description" content="Découvrez des casques moto dépassant même les exigences des tests de sécurité. Tous les casques Nolark au meilleur prix et avec en prime la livraison gratuite !">
             <meta name="viewport" content="width=device-width, initial-scale=1.0">
             <link href="../css/styles1.css" rel="stylesheet" type="text/css">
@@ -38,10 +38,27 @@ Click nbfs://nbhost/SystemFileSystem/Templates/ClientSide/html.html to edit this
                     </ul>
                 </nav>
             </header>
-            <section id="remuneration">
-            <h1>Calcul de rémunération pour les commerciaux</h1>
-            </section>
-            <footer>
-                <p>©2022 Nolark - Créé par Matthis Doney<p>
-            </footer>
-    </html>
+            <section class="remuneration">
+
+                <form name="Calcul de la rémuneration" action="remuneration.js" class="remuneration">
+
+                    <fieldset id="coordo">
+                        <legend>simulateur de remuneration</legend>
+                        <div><label for="i_years">année d'ancienneté :</label> <input type="number" name="i_years" id="i_years"><div class="input-validation"></div></div>
+                        <div><label for="i_s20">Nombre de s20 vendu :</label> <input type="number" name="i_s20" id="i_s20" ><div class="input-validation"></div></div>
+                        <div><label for="i_s20">Nombre de X-Spirit vendu :</label> <input type="number" name="i_xspirit" id="i_xspirit" ><div class="input-validation"></div></div>
+                        <div><label for="i_s20">Nombre de Multitec vendu :</label> <input type="number" name="i_multitec" id="i_multitec" ><div class="input-validation"></div></div>
+
+                        
+                                
+                                
+                                </fieldset>
+                                
+                                <div id="controles"><input type="button" id="btn_envoyer" name="sub_envoyer" value="Envoyer votre demande de contact"> <input type="reset" name="rst_annuler" value="Effacer les réponses"></div>
+                                </form>
+
+                                </section>
+                                <footer>
+                                    <p>©2022 Nolark - Créé par Matthis Doney<p>
+                                </footer>
+                                </html>

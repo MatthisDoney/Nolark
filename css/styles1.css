@@ -393,7 +393,18 @@ input[type="email"]:valid ~ .input-validation::before {
     }
 }
 
-#remuneration h1{
+.remuneration h1{
     text-align: center;
-    color: orange
+    color: black;
 }
+.remuneration form{
+    display: block;
+    background-color: lightgrey;
+    border: solid;
+    width: 50%;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 5%;
+    margin-bottom: 5%;
+}
+
