@@ -139,7 +139,9 @@ footer {
     background-color: black;
     color: lightgray;
     width: 916px;
-    text-align: center
+    text-align: center;
+    margin-bottom: 0px
+        
 }
 
 #carto {
@@ -407,4 +409,9 @@ input[type="email"]:valid ~ .input-validation::before {
     margin-top: 5%;
     margin-bottom: 5%;
 }
-
+@media screen and (max-width:768px) {
+    .remuneration form{
+    
+    width: 90%;
+}
+}
