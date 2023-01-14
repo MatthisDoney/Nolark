@@ -40,7 +40,7 @@ Click nbfs://nbhost/SystemFileSystem/Templates/ClientSide/html.html to edit this
                 </nav>
             </header>
             <section class="remuneration">
-                
+
                 <form name="Calcul de la rémuneration" action="../js/remuneration.js" class="remuneration">
 
                     <fieldset id="coordo">
@@ -50,16 +50,17 @@ Click nbfs://nbhost/SystemFileSystem/Templates/ClientSide/html.html to edit this
                         <div><label for="i_xspirit">Nombre de X-Spirit vendu :</label> <input type="number" name="i_xspirit" id="i_xspirit" ><div class="input-validation"></div></div>
                         <div><label for="i_multitec">Nombre de Multitec vendu :</label> <input type="number" name="i_multitec" id="i_multitec" ><div class="input-validation"></div></div>
 
-                        
-                                
-                                
-                                </fieldset>
-                                
-                                <div id="controles"><input type="button" id="btn_envoyer" name="sub_envoyer" value="Envoyer votre demande de contact"> <input type="reset" name="rst_annuler" value="Effacer les réponses"></div>
-                                </form>
 
-                                </section>
-                                <footer>
-                                    <p>©2022 Nolark - Créé par Matthis Doney<p>
-                                </footer>
-                                </html>
+
+
+                    </fieldset>
+
+                    <div id="controles"><input type="button" onclick="remuneration()" id="btn_envoyer" name="sub_envoyer" value="Calculer votre rémuneration"> <input type="reset" name="rst_annuler" value="Effacer les réponses"></div>
+                </form>
+                <p id="resultat">Votre Rémuneration s'affichera ici</p>
+
+            </section>
+            <footer>
+                <p>©2022 Nolark - Créé par Matthis Doney<p>
+            </footer>
+    </html>

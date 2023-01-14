@@ -415,3 +415,6 @@ input[type="email"]:valid ~ .input-validation::before {
     width: 90%;
 }
 }
+.remuneration p {
+    
+}
