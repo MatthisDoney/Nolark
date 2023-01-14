@@ -14,7 +14,7 @@ function remuneration() {
     } else if (anciennete >= 10) { //plus de 10ans d'ancienneté
         fixe = 1300 + (1300 * 6 / 100);
     }
-    let result = fixe + comS20(parseInt(window.document.querySelector("#i_s20").value)) + ComMultitec(parseInt(window.document.querySelector("#i_multitec").value)) + comXspirit(parseInt(window.document.querySelector("#i_xspirit").value));
+    let result = (fixe + comS20(parseInt(window.document.querySelector("#i_s20").value)) + ComMultitec(parseInt(window.document.querySelector("#i_multitec").value)) + comXspirit(parseInt(window.document.querySelector("#i_xspirit").value))) + "€";
 
     return document.getElementById("resultat").innerHTML = result;
     }
