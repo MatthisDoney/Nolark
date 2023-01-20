@@ -5,8 +5,16 @@
 
 
 function remuneration() {
+    
+    let result = (Ancienneté(parseInt(window.document.querySelector("#i_years").value)) + comS20(parseInt(window.document.querySelector("#i_s20").value)) + ComMultitec(parseInt(window.document.querySelector("#i_multitec").value)) + comXspirit(parseInt(window.document.querySelector("#i_xspirit").value))) + "€";
+
+    return document.getElementById("resultat").innerHTML = result;
+    }
+//calcul du fixe selon l'ancienneté
+function Ancienneté(nb)
+{
     let fixe = 0;
-    const anciennete = parseInt(window.document.querySelector("#i_years").value);
+    const anciennete = nb;
     if (anciennete < 5) { //moins de 5ans d'ancienneté
         fixe = 1300;
     } else if (anciennete >= 5 && anciennete < 10) { //entre 5 et 10 ans
@@ -14,10 +22,8 @@ function remuneration() {
     } else if (anciennete >= 10) { //plus de 10ans d'ancienneté
         fixe = 1300 + (1300 * 6 / 100);
     }
-    let result = (fixe + comS20(parseInt(window.document.querySelector("#i_s20").value)) + ComMultitec(parseInt(window.document.querySelector("#i_multitec").value)) + comXspirit(parseInt(window.document.querySelector("#i_xspirit").value))) + "€";
-
-    return document.getElementById("resultat").innerHTML = result;
-    }
+    return fixe;
+}
 //calcul la com sur S20
 function comS20(nb) {
     const prixS20 = 140;
@@ -50,3 +56,6 @@ function comXspirit(nb)
 
     return nb * prixspirit * Axspirit;
 }
+
+let bouton = window.document.queryselector().values("btn_envoyer");
+bouton.addEventListener("click", function(){ remuneration(); });
