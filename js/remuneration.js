@@ -4,14 +4,9 @@
  */
 
 
-function remuneration() {
-    
-    let result = (Ancienneté(parseInt(window.document.querySelector("#i_years").value)) + comS20(parseInt(window.document.querySelector("#i_s20").value)) + ComMultitec(parseInt(window.document.querySelector("#i_multitec").value)) + comXspirit(parseInt(window.document.querySelector("#i_xspirit").value))) + "€";
 
-    return document.getElementById("resultat").innerHTML = result;
-    }
 //calcul du fixe selon l'ancienneté
-function Ancienneté(nb)
+function ancienneté(nb)
 {
     let fixe = 0;
     const anciennete = nb;
@@ -57,5 +52,23 @@ function comXspirit(nb)
     return nb * prixspirit * Axspirit;
 }
 
-let bouton = window.document.queryselector().values("btn_envoyer");
-bouton.addEventListener("click", function(){ remuneration(); });
+window.addEventListener("load", function() {
+
+ window.document.querySelector("#btn_envoyer").addEventListener("click", function() {
+ // Déclaration des constantes
+ const fixe = 1100.0;
+
+ // Déclaration et affectation des variables
+ let nbAncien = parseInt(window.document.querySelector("#i_years").value);
+ let nbS20 = parseInt(window.document.querySelector("#i_s20").value);
+ let nbXS = parseInt(window.document.querySelector("#i_xspirit").value);
+ let nbMulti = parseInt(window.document.querySelector("#i_multitec").value);
+ let remuneration = fixe + ancienneté(nbAncien)
+ + comS20(nbS20) + comXspirit(nbXS)
+ + ComMultitec(nbMulti);
+ // Affichage du résultat
+ window.document.querySelector("#resultat").innerHTML =
+ "La rémunération sera de : " + remuneration + " €";
+ console.log("ca marche ?");
+ });
+});
