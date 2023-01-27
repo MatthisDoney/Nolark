@@ -78,7 +78,7 @@ window.addEventListener("load", function () {
 
 function calcRemu() {
     // Déclaration des constantes
-    const fixe = 1100.0;
+    const fixe = 0;
     // Déclaration et affectation des variables
     let nbAncien = recupValeur("#num_ancien");
     let parcoursKm = recupValeur("#parcours_km");
