@@ -40,27 +40,17 @@ Click nbfs://nbhost/SystemFileSystem/Templates/ClientSide/html.html to edit this
                 </nav>
             </header>
             <h1>Calcul de la rémunération des livreurs</h1>
-            <section class="remuneration">
-
-                <form name="Calcul de la rémuneration" action="../js/livrexpress.js" class="remuneration">
-
-                    <fieldset id="coordo">
-                        <legend>simulateur de remuneration</legend>
-                        <div><label for="num_ancien">année d'ancienneté :</label> <input type="number" name="num_ancien" id="num_ancien"><div class="input-validation"></div></div>
-                        <div><label for="parcours_km">Distance Parcouru :</label> <input type="number" name="parcours_km" id="parcours_km" ><div class="input-validation"></div></div>
-                        <div><label for="nb_accidents">Nombre d'accident :</label> <input type="number" name="nb_accidents" id="nb_accidents" ><div class="input-validation"></div></div>
-                        
-
-
-
-                    </fieldset>
-
-                    <div id="controles"><input type="button" id="btn_envoyer" name="sub_envoyer" value="Calculer votre rémuneration"> <input type="reset" name="rst_annuler" value="Effacer les réponses"></div>
-                    <div id="box_result"><p id="resultat">Votre Rémuneration s'affichera ici</p></div>
-                </form>
-
-
-
+            <section id="formulaire" class='remuneration'>
+                <h1>Simulateur de prime annuelle pour les chauffeurs de Livr'Express :</h1> 
+                <form id="form_simulateur" name="form_simulateur"> 
+                    <fieldset id="recueilinfos">
+                        <legend>Vos informations : </legend>
+                        <p> <label for="nb_accidents">Nombre d'accidents :</label>
+                            <input type="range" name="nb_accidents" id="nb_accidents" min="0" max="9" value="0"> <output for="nb_accidents" id="o_nb_accidents">0</output> </p>
+                        <p> <label for="nb_ancien">Nombre d'années d'ancienneté :</label> <input type="number" name="nb_ancien" id="nb_ancien" min="0" max="50" value="0"> </p> 
+                        <p> <label for="nb_km">Nombre de kilomètres parcourus :</label> <input type="number" name="nb_km" id="nb_km" min="0" max="999999" value="0"> </p> </fieldset>
+                    <p id="controles"> <input type="reset" id="btn_annuler" value="Effacer les données"> </p> 
+                </form> 
             </section>
             <footer>
                 <p>©2022 Nolark - Créé par Matthis Doney<p>
