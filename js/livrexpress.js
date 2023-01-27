@@ -63,6 +63,7 @@ function reduction(primeTotale, nbAccident) {
 
 
 window.addEventListener("load", function () {
+    
     // Déclaration de l'index de parcours
     let i;
     // tabInputs est une collection de <input>
@@ -105,6 +106,6 @@ function recupValeur(id) {
  * @return {undefined}
  */
 function afficheRemu(nombre) {
-    window.document.querySelector("#remuneration").innerHTML =
+    window.document.querySelector("#resultat").innerHTML =
             "La rémunération sera de : " + nombre + " €";
 }
