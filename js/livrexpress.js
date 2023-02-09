@@ -1,49 +1,78 @@
-/**
- * Fonction qui retourne la prime de distance
- * 
- * @param {integer} nb
- * @returns {float}
+/* 
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+ * Click nbfs://nbhost/SystemFileSystem/Templates/ClientSide/javascript.js to edit this template
  */
-function recupPrimeDist(nb) {
-    const primeMax = 900, primeKm = 0.01;
-    let indem = nb * primeKm;
-    if (indem > primeMax) {
-        return primeMax;
+/**
+ * Retourne la prime de distance perçue en fonction des kilometres parcourus
+ * @param {Integer} distKm
+ * @returns {Number}
+ */
+function primeDistance(distKm) {
+    const plafond = 900;
+    const primeParKm = 0.01;
+    if (primeParKm * distKm >= plafond) {
+        return plafond;
     } else {
-        return indem;
+        return primeParKm * distKm;
     }
 }
+
 /**
- * Fonction qui retourne la prime d'ancienneté
- * 
- * @param {integer} nb
- * @returns {float}
+ * Retourne la prime d'anciennetée en tenant compte du bonus
+ * @param {Integer} annees
+ * @returns {Number}
+ 
  */
-function recupPrimeAncien(nb) {
-    const nbMin = 4, primeMin = 300, primeSupp = 30;
-    if (nb >= nbMin) {
-        return primeMin + (nb - nbMin) * primeSupp;
-    } else {
-        return 0.0;
-    }
-}
-/**
- * Fonction qui retourne la prime annuelle
- * 
- * @param {float} primeDist
- * @param {float} primeAncien
- * @param {integer} nbAccidents
- * @returns {float}
- */
-function recupPrimeAnnuelle(primeDist, primeAncien, nbAccidents) {
-    if (nbAccidents > 3) {
+function primeAncien(annees) {
+    const prime = 300;
+    const pallier = 4;
+    const bonus = 30;
+
+    if (annees < pallier) {
         return 0;
     } else {
-        return Number(((primeDist + primeAncien) / (1 + nbAccidents)).toFixed(2));
+        return prime + bonus * (annees - pallier);
+    }
+}
+
+/**
+ * 
+ * @param {type} primeTotale
+ * @param {type} nbAccident
+ * @returns {undefined}
+ */
+function reduction(primeTotale, nbAccident) {
+    const premAcc = 0.5;
+    const deuxAcc = 0.33;
+    const troisAcc = 0.25;
+    const quatAcc = 0.0;
+
+    /*if (nbAccident === 0) {
+     return primeTotale;
+     } else if (nbAccident === 1) {
+     return primeTotale * premAcc;
+     } else if (nbAccident === 2) {
+     return primeTotale * deuxAcc;
+     } else if (nbAccident === 3) {
+     return primeTotale * troisAcc;
+     } else {
+     return quatAcc;
+     }*/
+    if (nbAccident > 3) {
+        return 0.0;
+    } else {
+        return primeTotale / (1 + nbAccident);
     }
 }
 
 window.addEventListener('load', function () {
+
+    window.addEventListener('reset', function () { //"Ecoute" le site afin de détécter si le form à été reinitialisé
+        window.document.querySelector('#remuneration').remove();
+        window.document.querySelector('#sensibilisation').remove();
+
+    });
+
     // tabEvents est une collection d'évenements
     let tabEvents = ['keyup', 'click'];
     // tabInputs est une collection de <input>
@@ -53,6 +82,7 @@ window.addEventListener('load', function () {
         for (let j = 0; j < tabEvents.length; j++) {
             // Ajout des listeners sur tous les <input> des events listés dans tabEvents
             tabInputs[i].addEventListener(tabEvents[j], calculerPrime);
+
         }
     }
     // Gestion de l'input de type range (recopie de la valeur dans l'output)
@@ -60,28 +90,34 @@ window.addEventListener('load', function () {
         window.document.querySelector('#o_nb_accidents').value =
                 recupValeur('#nb_accidents');
         calculerPrime();
+
     });
 });
-/**
- * Procédure qui s'occupe du recueil des paramètres de calcul de la prime ainsi que de 
- * l'affichage
- * 
- * @returns {void}
- */
+
+
+
+
+
 function calculerPrime() {
-    let nbAccidents = recupValeur('#nb_accidents');
-    let nbAncien = recupValeur('#nb_ancien');
-    let nbKm = recupValeur('#nb_km');
-    let primeAnnuelleSansAccident = recupPrimeAnnuelle(recupPrimeDist(nbKm),
-            recupPrimeAncien(nbAncien), 0);
-    let primeAnnuelle = recupPrimeAnnuelle(recupPrimeDist(nbKm),
-            recupPrimeAncien(nbAncien), nbAccidents);
+    // Déclaration des constantes
+    const fixe = 1100.0;
+    // Déclaration et affectation des variables
+    let nbAcc = recupValeur("#nb_accidents");
+    let nbAncien = recupValeur("#nb_ancien");
+    let parcoursKm = recupValeur("#nb_km");
+    let primeAnnuelleSansAccident = reduction(primeDistance(parcoursKm) +
+            primeAncien(nbAncien), 0);
+    let primeAnnuelle = reduction(primeDistance(parcoursKm) +
+            primeAncien(nbAncien), nbAcc);
     // Gestion de l'affichage de la prime en fonction du nombre d'accidents
-    gestionNbAccidents(nbAccidents, primeAnnuelleSansAccident, primeAnnuelle);
+    gestionNbAccidents(nbAcc, primeAnnuelleSansAccident, primeAnnuelle);
+
 }
+
+
 /**
  * Procédure qui gère l'affichage en fonction du nombre d'accidents
- * 
+ *
  * @param {integer} nbAccidents
  * @param {float} primeAnnuelleSansAccident
  * @param {float} primeAnnuelle
@@ -90,6 +126,9 @@ function calculerPrime() {
 function gestionNbAccidents(nbAccidents, primeAnnuelleSansAccident, primeAnnuelle) {
     let elH2 = window.document.querySelector('#remuneration');
     // Si #remuneration (<h2 id='remuneration'></h2>) n'existe pas, on le créé
+    
+    let elNouv = window.document.querySelector('#sensibilisation');//permet de créer l'espace necesssaire à la video
+
     if (!elH2) {
         elH2 = window.document.createElement('h2');
         elH2.id = 'remuneration';
@@ -99,22 +138,41 @@ function gestionNbAccidents(nbAccidents, primeAnnuelleSansAccident, primeAnnuell
     // Gestion de l'affichage avec gestion particulière pour 0 et 1 accident
     if (nbAccidents === 0) {
         elH2.innerHTML = 'Votre prime sera de ' + primeAnnuelle + ' €';
-    } else if (nbAccidents === 1) {
-        elH2.innerHTML = 'Votre prime sera de ' + primeAnnuelle
-                + ' € alors qu\'elle aurait pu être de '
-                + primeAnnuelleSansAccident + ' € sans ' + nbAccidents
-                + ' accident responsable...';
+    } else if (nbAccidents === 4) {
+        elH2.innerHTML = 'En 2021, 3 219 personnes sont mortes sur les routes de France Metropolitaine.\n\
+        Ne soyez pas la cause.';
+
+        if (!elNouv) { //si l'espace de video n'exite pas il est crée
+            elNouv = window.document.createElement('h3');
+            elNouv.id = 'sensibilisation';
+            window.document.querySelector('#recueilinfos').appendChild(elNouv);
+        }
+
+        document.getElementById("sensibilisation").innerHTML = '<iframe width="100%" height="315" src="https://www.youtube.com/embed/gpNMrcgiAdw" title="YouTube video player" frameborder="0" \n\
+allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>';
+
     } else {
-        elH2.innerHTML = 'Votre prime sera de ' + primeAnnuelle
-                + ' € alors qu\'elle aurait pu être de '
-                + primeAnnuelleSansAccident + ' € sans ' + nbAccidents
-                + ' accidents responsables...';
+        if (!elNouv) {
+            elH2.innerHTML = 'Votre prime sera de ' + primeAnnuelle
+                    + ' € alors qu\'elle aurait pu être de '
+                    + Math.round(primeAnnuelleSansAccident) + ' € sans ' + Math.round(nbAccidents)
+                    + ' accidents responsables...';
+        } else {
+            window.document.querySelector('#sensibilisation').remove(); //supprime la video si le nombre d'accidents change
+
+            elH2.innerHTML = 'Votre prime sera de ' + primeAnnuelle
+                    + ' € alors qu\'elle aurait pu être de '
+                    + primeAnnuelleSansAccident + ' € sans ' + nbAccidents
+                    + ' accidents responsables...';
+        }
     }
 }
+
+
+
 /**
- * Fonction qui retourne un entier depuis une valeur prise dans le DOM et qui replace le 
- * champ à 0 si la valeur saisie n'est pas un nombre
- * 
+ * Fonction qui retourne un entier depuis une valeur prise dans le DOM
+ *
  * @param {String} id
  * @return {integer}
  */
