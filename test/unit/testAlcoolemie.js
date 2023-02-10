@@ -71,47 +71,96 @@ function getAlcoolemie(sexe, poids, nbVerres) {
     }
 }
 
-MesTestsUnitaires.prototype.testsGetAmende = function() {
- assertEquals('Moins de 0,8 g/l de sang', 'Minorée : 90 € / Forfaitaire : 135 € / Majorée : 375 €', getAmende(0.4));
- assertEquals('A partir de 0,8 g/l', '4500 €', getAmende(0.8));
+MesTestsUnitaires.prototype.testsGetAmende = function () {
+    assertEquals('Moins de 0,8 g/l de sang', 'Minorée : 90 € / Forfaitaire : 135 € / Majorée : 375 €', getAmende(0.4));
+    assertEquals('A partir de 0,8 g/l', '4500 €', getAmende(0.8));
 };
 
 /**
-* Fonction qui retourne l'amende encourue en fonction de l'alcoolémie
-*
-* @param {float} alcoolemie
-* @returns {string}
-*/
+ * Fonction qui retourne l'amende encourue en fonction de l'alcoolémie
+ *
+ * @param {float} alcoolemie
+ * @returns {string}
+ */
 function getAmende(alcoolemie) {
- const seuil = 0.8;
- if(alcoolemie < seuil) {
- return 'Minorée : 90 € / Forfaitaire : 135 € / Majorée : 375 €';
- } else {
- return '4500 €';
- }
+    const seuil = 0.8;
+    if (alcoolemie < seuil) {
+        return 'Minorée : 90 € / Forfaitaire : 135 € / Majorée : 375 €';
+    } else {
+        return '4500 €';
+    }
 }
 
-MesTestsUnitaires.prototype.testsGetSanction = function() {
- assertEquals('Moins de 0,8 g/l de sang', '6 points + suspension 3 ans',
-getSanction(0.4));
- assertEquals('A partir de 0,8 g/l de sang', '6 points + 2 ans de prison + suspension 3 ans + stage de sensibilisation', getSanction(0.8));
+MesTestsUnitaires.prototype.testsGetSanction = function () {
+    assertEquals('Moins de 0,8 g/l de sang', '6 points + suspension 3 ans',
+            getSanction(0.4));
+    assertEquals('A partir de 0,8 g/l de sang', '6 points + 2 ans de prison + suspension 3 ans + stage de sensibilisation', getSanction(0.8));
 };
 
 /**
-* Fonction qui retourne la sanction encourue en fonction de l'alcoolémie
-*
-* @param {float} alcoolemie
-* @returns {string}
-*/
+ * Fonction qui retourne la sanction encourue en fonction de l'alcoolémie
+ *
+ * @param {float} alcoolemie
+ * @returns {string}
+ */
 function getSanction(alcoolemie) {
- const seuil = 0.8;
- if (alcoolemie < seuil) {
- return '6 points + suspension 3 ans';
- } else {
- return '6 points + 2 ans de prison + suspension 3 ans + stage de sensibilisation';
- }
+    const seuil = 0.8;
+    if (alcoolemie < seuil) {
+        return '6 points + suspension 3 ans';
+    } else {
+        return '6 points + 2 ans de prison + suspension 3 ans + stage de sensibilisation';
+    }
 }
 
+MesTestsUnitaires.prototype.testsGetInt = function () {
+    /*:DOC +=
+     <input type="number" id="num_verre" value="1">
+     <input type="number" id="num_poids" value="100">
+     */
+    assertTrue('Test poids 100 Kg', 100 === getInt('#num_poids'));
+    assertTrue('Test 1 verre', 1 === getInt('#num_verre'));
+    window.document.querySelector('#num_verre').value = 'texte';
+    assertTrue('Test erreur saisie verre', 0 === getInt('#num_verre'));
+};
 
 
+/**
+ * Fonction qui retourne une valeur entière récupérée via
+ * window.document.querySelector(id)
+ *
+ * @param {string} id
+ * @returns {integer}
+ */
+function getInt(id) {
+    if (isNaN(parseInt(window.document.querySelector(id).value))) {
+        return 0;
+    } else {
+        return parseInt(window.document.querySelector(id).value);
+    }
+}
 
+MesTestsUnitaires.prototype.testsGetString = function () {
+    /*:DOC +=
+     <fieldset id="sexe">
+     <input type="radio" name="rd_sexe" id="rd_sexehomme" value="homme"
+     checked="checked">
+     <input type="radio" name="rd_sexe" id="rd_sexefemme" value="femme">
+     </fieldset>
+     */
+    assertTrue('Test bouton radio Homme', 'homme' === getString('#sexe input[type="radio"]:checked'));
+    // Changement de sexe
+    window.document.querySelector('#rd_sexehomme').removeAttribute('checked');
+    window.document.querySelector('#rd_sexefemme').setAttribute('checked', 'checked');
+    assertTrue('Test bouton radio Femme',
+            'femme' === getString('#sexe input[type="radio"]:checked'));
+};
+
+/**
+ * Fonction qui retourne un string récupéré dans un champ via son id
+ *
+ * @param {string} id
+ * @returns {string}
+ */
+function getString(id) {
+    return window.document.querySelector(id).value;
+}
