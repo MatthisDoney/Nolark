@@ -18,5 +18,15 @@ fieldset {
 }
 fieldset #sexe {
     border : solid;
-    width :25%;
+    width :20%;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+fieldset p {
+    margin-bottom: 20px;
+    margin-top: 20px;
+}.entree {
+    width: 40px;
+
 }
